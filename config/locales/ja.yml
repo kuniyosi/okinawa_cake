@@ -1,12 +1,12 @@
 ja:
   enums:
-    ordder_detail:
+    order_detail:
       production_status:
         cant_start: "着手不可"
         awaiting_manufacture: "制作待ち"
         manufacturing: "制作中"
         finish: "制作完了"
-    ordder:
+    order:
       payment_method:
         credit_card: "クレジットカード"
         bank_transfer: "銀行振込"

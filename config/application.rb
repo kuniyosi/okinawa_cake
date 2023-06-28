@@ -11,6 +11,8 @@ module OkinawaCake
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    config.i18n.default_locale = :ja
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -19,7 +21,5 @@ module OkinawaCake
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # 日本語化するための記述
-    config.i18n.default_locale = :ja
   end
 end
