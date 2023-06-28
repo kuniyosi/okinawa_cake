@@ -1,0 +1,18 @@
+ja:
+  enums:
+    ordder_detail:
+      production_status:
+        cant_start: "着手不可"
+        awaiting_manufacture: "制作待ち"
+        manufacturing: "制作中"
+        finish: "制作完了"
+    ordder:
+      payment_method:
+        credit_card: "クレジットカード"
+        bank_transfer: "銀行振込"
+      status:
+        wait_payment: "入金待ち"
+        confirm_payment: "入金確認"
+        in_production: "制作中"
+        preparing_to_ship: "発想準備中"
+        already_shipped: "発送済み"
