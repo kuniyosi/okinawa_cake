@@ -31,7 +31,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-      
+
       t.string :last_name,              null: false
       t.string :first_name,             null: false
       t.string :last_name_kana,         null: false
@@ -39,9 +39,9 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       t.integer :postal_code,           null: false
       t.string :address,                null: false
       t.string :phone_number,           null: false
-      # default: falseでデフォルトをfalseに設定。null: falseでnull(Rubyのnil)が設定されることを禁止。
-      t.boolean :status,                null: false
-      
+      # default: trueで初期値をtrueに設定。設定しておかないとエラーが起こるnull: falseでnull(Rubyのnil)が設定されることを禁止。
+      t.boolean :status,                null: false, default: true
+
 
 
       t.timestamps null: false
