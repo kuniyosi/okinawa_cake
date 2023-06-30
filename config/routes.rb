@@ -28,16 +28,21 @@ Rails.application.routes.draw do
     root 'homes#top'
     get '/about' => 'homes#about', as: 'about'
 
+    get 'customers/mypage' => 'customers#show', as: 'mypage'
+    get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
+    patch 'customers/winformation' => 'customers#update', as: 'update_information'
+    get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
+    patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
+    put 'customers/information' => 'customers#update'
+
     resources :items, only: [:show, :index]
     resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
     resources :cart_items, only: [:index, :update, :destroy, :create] do
       delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all_cart_items'
     end
-    resources :customers, only: [:show, :update] do
-      get 'information/edit' => 'customers#edit', as: 'edit_information'
-      get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
-      patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
-    end
+
+
+
     resources :orders, only: [:new, :show, :index, :create] do
       post 'orders/confirm' => 'orders#confirm'
       get 'orders/thanks' => 'orders#thanks', as: 'thanks'

@@ -6,6 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://kit.fontawesome.com/497b62484c.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <!--↓bootstrapを読み込むための記述-->
@@ -13,6 +14,110 @@
   </head>
 
   <body>
+    <header>
+      <nav class = "navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class = "container">
+          <!--ロゴの表示。リンク先をルートに指定-->
+          <%=  link_to image_tag('logo.png', size: "150x80"),root_path, class: 'navbar-brand' %>
+          <!--レスポンシブ対応で画面が小さくなった時にハンバーガーメニューで表示する-->
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class = "collapse navbar-collapse" id = "Navber" style>
+            <ul class = "navbar-nav ms-auto">
+              <% if customer_signed_in? %>
+                <li>
+                  <%=  link_to mypage_path, class: 'nav-link text-light' do %>
+                    <i class="fa-solid fa-house"></i> マイページ
+                  <% end %>
+                </li>
+                <!--商品一覧-->
+                <li>
+                  <%=  link_to items_path, class: 'nav-link text-light' do %>
+                    <i class="fa-solid fa-cake-candles"></i> 商品一覧
+                  <% end %>
+                </li>
+                <!--カート-->
+                <li>
+                  <%=  link_to books_path, class: 'nav-link text-light' do %>
+                    <i class="fa-solid fa-cart-shopping"></i> カート
+                  <% end %>
+                </li>
+                <!--ログアウト-->
+                <li>
+                  <%=  link_to destroy_customer_session_path, class: 'nav-link text-light', method: :delete do %>
+                    <i class="fa-solid fa-right-from-bracket"></i> ログアウト
+                  <% end %>
+                </li>
+              <% elsif admin_signed_in? %>
+                <!--商品一覧-->
+                <li>
+                  <%=  link_to admin_items_path, class: 'nav-link text-light' do %>
+                    <i class="fa-solid fa-cake-candles"></i> 商品一覧
+                  <% end %>
+                </li>
+                <!--会員一覧-->
+                <li>
+                  <%=  link_to admin_customers_path, class: 'nav-link text-light' do %>
+                    <i class="fa-solid fa-users"></i> 会員一覧
+                  <% end %>
+                </li>
+                <!--注文履歴、追加するかも-->
+                <!--ジャンル一覧-->
+                <li>
+                  <%=  link_to admin_genres_path, class: 'nav-link text-light' do %>
+                    <i class="fa-solid fa-ellipsis-vertical"></i> ジャンル一覧
+                  <% end %>
+                </li>
+                <!--ログアウト-->
+                <li>
+                  <%=  link_to destroy_admin_session_path, class: 'nav-link text-light', method: :delete do %>
+                    <i class="fa-solid fa-right-from-bracket"></i> Log out
+                  <% end %>
+                </li>
+              <% else %>
+                <!--アバウト-->
+                <li>
+                  <%=  link_to about_path, class: 'nav-link text-light' do %>
+                    <i class="fa-solid fa-link"></i> About
+                  <% end %>
+                </li>
+                <!--商品一覧-->
+                <li>
+                  <%=  link_to items_path, class: 'nav-link text-light' do %>
+                    <i class="fa-solid fa-cake-candles"></i> 商品一覧
+                  <% end %>
+                </li>
+                <!--新規登録-->
+                <li>
+                  <%=  link_to new_customer_registration_path, class: 'nav-link text-light' do %>
+                    <i class="fa-solid fa-user-plus"></i> 新規登録
+                  <% end %>
+                </li>
+                <!--ログイン-->
+                <li>
+                  <%=  link_to new_customer_session_path, class: 'nav-link text-light' do %>
+                    <i class="fa-solid fa-right-to-bracket"></i> ログイン
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!--フラッシュメッセージは全ページに対応させるためにapplication.html.erbに書くのが良い。-->
+    <p id="notice"><%= notice %></p>
     <%= yield %>
+    <footer>
+      <div class = "container mt-5">
+        <div class = "row">
+          <div class = "mx-auto text-center">
+            <p>CopyRight OkinawaCake.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
