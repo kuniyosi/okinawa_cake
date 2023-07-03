@@ -1,1 +1,41 @@
-<h1>admin#new</h1>
+<div class = "container">
+
+<h3>商品新規登録</h3>
+
+<%= form_with model: @item, url: admin_items_path do |f| %>
+  <div class = "form-group">
+    <label for = "item_description">商品画像</label>
+    <%= f.file_field :item_image, accept: "image/*" %>
+  </div>
+  <div class = "form-group">
+    <label for = "item_name">商品名</label>
+    <%= f.text_field :name, class: 'form-control item_name' %>
+  </div>
+  <div class = "form-group">
+    <label for = "item_description">商品説明</label>
+    <%= f.text_area :description, class: 'form-control item_description' %>
+  </div>
+  <div class = "form-group">
+    <label for = "item_genre_id">ジャンル</label>
+    <!--collection_selectでデータベースに保存されている情報を元に選択肢を表示-->
+    <!--form.collection_select(保存されるカラム名, オブジェクトの配列, カラムに保存される項目, 選択肢に表示されるカラム名, {オプション}, {htmlオプション} )-->
+    <!--promptオプションでジャンルを選択してくださいを始めに表示させる-->
+    <%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: 'ジャンルを選択してください' %>
+  </div>
+  <div class = "form-group">
+    <label for = "item_price">税抜価格</label>
+    <!--number_fieldで数値だけの入力を許可する-->
+    <%= f.number_field :price, class: 'form-control item_price' %><p>円</p>
+  </div>
+  <div class = "form-group">
+    <label for = "item_sale_status">販売ステータス</label>
+    <!--form.radio_button "保存されるカラム名", "カラムに保存される内容"-->
+    <div><%= f.radio_button :sale_status, true %>販売中</div>
+    <div><%= f.radio_button :sale_status, false %>販売停止中</div>
+  </div>
+  <div class = "form-group">
+    <%= f.submit '新規登録', class: 'btn btn-success' %>
+  </div>
+<% end %>
+
+</div>
