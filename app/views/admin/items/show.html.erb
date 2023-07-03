@@ -1,1 +1,18 @@
-<h1>admin#show</h1>
+<div class = "container">
+
+<h1>商品詳細</h1>
+
+<%= image_tag @item.item_image, size: "200x200" %>
+
+<p>商品名：<%= @item.name %></p>
+
+<p>商品説明：<%= @item.description %></p>
+
+<p>ジャンル：<%= @item.genre.name %></p>
+
+<!--税込価格はモデルにadd_tax_priceメソッドを作成して活用。to_s(:delimited)は3桁ごとに,を入れてくれる-->
+<p>税込価格（税抜価格）：<%= @item.add_tax_price.to_s(:delimited) %>（<%= @item.price.to_s(:delimited) %>）円</p>
+
+<p>販売ステータス：<%= @item.sale_status ? '販売中' : '販売停止中' %></p>
+
+</div>

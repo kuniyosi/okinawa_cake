@@ -39,7 +39,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       t.integer :postal_code,           null: false
       t.string :address,                null: false
       t.string :phone_number,           null: false
-      # default: trueで初期値をtrueに設定。設定しておかないとエラーが起こるnull: falseでnull(Rubyのnil)が設定されることを禁止。
+      # default: trueで初期値をtrueに設定。設定しておかないとエラーが起こるnull: falseでnullが設定されることを禁止。
       t.boolean :status,                null: false, default: true
 
 
