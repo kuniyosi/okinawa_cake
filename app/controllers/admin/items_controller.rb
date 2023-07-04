@@ -22,12 +22,25 @@ class Admin::ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
   end
 
   def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to admin_item_path(@item)
+    else
+      render edit_admin_item_path(@item)
+    end
   end
 
   def destroy
+    @item = Item.find(params[:id])
+    if @item.destroy
+      redirect_to admin_items_path
+    else
+      render admin_item_path(@item)
+    end
   end
 
   private
