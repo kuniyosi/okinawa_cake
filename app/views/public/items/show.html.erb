@@ -1,2 +1,14 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class = "container">
+
+<h1>商品詳細</h1>
+
+<%= image_tag @item.item_image, size: "200x200" %>
+
+<p>商品名：<%= @item.name %></p>
+
+<p>商品説明：<%= @item.description %></p>
+
+<!--税込価格はモデルにadd_tax_priceメソッドを作成して活用。to_s(:delimited)は3桁ごとに,を入れてくれる-->
+<p>税込価格：<%= @item.add_tax_price.to_s(:delimited) %>円</p>
+
+</div>

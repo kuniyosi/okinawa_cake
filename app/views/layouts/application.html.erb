@@ -19,6 +19,11 @@
         <div class = "container">
           <!--ロゴの表示。リンク先をルートに指定-->
           <%=  link_to image_tag('logo.png', size: "150x80"),root_path, class: 'navbar-brand' %>
+          <% if customer_signed_in? %>
+            <p class = "text-white">
+              ようこそ、<%= current_customer.last_name %>さん
+            </p>
+          <% end %>
           <!--レスポンシブ対応で画面が小さくなった時にハンバーガーメニューで表示する-->
           <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
             <span class="navbar-toggler-icon"></span>
