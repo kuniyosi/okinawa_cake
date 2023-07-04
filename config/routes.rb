@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
     get 'customers/mypage' => 'customers#show', as: 'mypage'
     get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
-    patch 'customers/winformation' => 'customers#update', as: 'update_information'
+    patch 'customers/update' => 'customers#update'
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
     put 'customers/information' => 'customers#update'
