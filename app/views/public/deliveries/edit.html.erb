@@ -1,2 +1,5 @@
-<h1>Public::Deliveries#edit</h1>
-<p>Find me in app/views/public/deliveries/edit.html.erb</p>
+<div class = "container">
+
+  <h1>配送先一覧/登録</h1>
+  <%= render 'form', delivery: @delivery, url: delivery_path, submit: '変更内容を保存' %>
+</div>
