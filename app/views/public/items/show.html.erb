@@ -11,4 +11,17 @@
 <!--税込価格はモデルにadd_tax_priceメソッドを作成して活用。to_s(:delimited)は3桁ごとに,を入れてくれる-->
 <p>税込価格：<%= @item.add_tax_price.to_s(:delimited) %>円</p>
 
+<!--商品販売中の場合に表示する-->
+<% if @item.sale_status == true %>
+  <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+    <%= f.label :item_quantity, "個数選択" %>
+      <!--[1..10]で1から10までを選択できる-->
+      <%= f.select :item_quantity, *[1..10] %>
+    <!--hidden_fieldを使うことで顧客がどの商品かを入力しなくてもデータを送信できるようにする。今回はcart_itemモデルのitem_idに対して@item.idを送るようにしている-->
+    <%= f.hidden_field :item_id, :value => @item.id %>
+   <%= f.submit "カートに入れる" %>
+  <% end %>
+<% end %>
+
+
 </div>
