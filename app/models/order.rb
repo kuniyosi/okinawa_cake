@@ -4,10 +4,12 @@ class Order < ApplicationRecord
 
   belongs_to :customer
 
+  # 注文ステータス
   enum status: {
     wait_payment: 0, confirm_payment: 1, in_production: 2, preparing_to_ship: 3, already_shipped: 4
   }
 
+  # 支払い方法
   enum payment_method: {
     credit_card: 0, bank_transfer: 1
   }
