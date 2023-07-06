@@ -34,6 +34,8 @@ Rails.application.routes.draw do
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
     put 'customers/information' => 'customers#update'
+    post 'orders/confirm' => 'orders#confirm'
+    get 'orders/thanks' => 'orders#thanks', as: 'thanks'
 
     resources :items, only: [:show, :index]
     resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
@@ -43,10 +45,7 @@ Rails.application.routes.draw do
 
 
 
-    resources :orders, only: [:new, :show, :index, :create] do
-      post 'orders/confirm' => 'orders#confirm', as: 'confirm'
-      get 'orders/thanks' => 'orders#thanks', as: 'thanks'
-    end
+    resources :orders, only: [:new, :show, :index, :create]
 
   end
 
