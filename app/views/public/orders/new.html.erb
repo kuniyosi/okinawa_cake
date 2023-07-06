@@ -1,5 +1,5 @@
 <div class = "container">
-  <%= form_with model: @order, url: '/orders/confirm', method: :post do |f| %>
+  <%= form_with model: @order, url: orders_confirm_path do |f| %>
   <h4>支払い方法</h4>
   <!--モデルに記述したenumを用いて支払い方法を表示。keyをenumの設定した数字にする-->
   <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
