@@ -15,7 +15,14 @@
       <tr>
         <td><%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
         <td><%= order.customer.full_name %></td>
-        <td></td>
+        <td>
+          <% @total_quantity = 0 %>
+          <!--orderに結びつくorder_detailのquantityを取り出して合計数を表示する-->
+          <% order.order_details.each do |order_detail| %>
+          <% @total_quantity += order_detail.quantity %>
+          <% end %>
+          <%= @total_quantity %>
+        </td>
         <td><%= order.status_i18n %></td>
       </tr>
     <% end %>
