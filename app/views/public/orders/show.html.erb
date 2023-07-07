@@ -1,2 +1,30 @@
-<h1>Public::Oeders#show</h1>
-<p>Find me in app/views/public/oeders/show.html.erb</p>
+<div class = "container">
+  <div>
+    <h6>注文情報</h6>
+    <p><%= @order.created_at.strftime('%Y/%m/%d') %></p>
+    <p>
+      〒<%= @order.postcode %><br>
+      <%= @order.ship_to_address %><br>
+      <%= @order.ship_name %>
+    </p>
+    <p><%= @order.payment_method_i18n %></p>
+    <p><%= @order.status_i18n %></p>
+
+
+    <h6>請求情報</h6>
+    <% @sum = (@order.total_price-@order.freight) %>
+    <p><%= @sum.to_s(:delimited) %>円</p>
+    <p><%= @order.freight %>円</p>
+    <p><%= @order.total_price.to_s(:delimited) %>円</p>
+
+    <h6>注文内容</h6>
+      <% @order_details.each do |order_detail| %>
+        <p><%= order_detail.item.name %></p>
+        <p><%= order_detail.item.add_tax_price %></p>
+        <p><%= order_detail.quantity %></p>
+        <% @subtotal = (order_detail.item.add_tax_price*order_detail.quantity).to_i %>
+        <p><%= @subtotal.to_s(:delimited) %>円</p>
+      <% end %>
+    </p>
+  </div>
+</div>
