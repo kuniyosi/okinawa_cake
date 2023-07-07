@@ -13,4 +13,8 @@ class Order < ApplicationRecord
   enum payment_method: {
     credit_card: 0, bank_transfer: 1
   }
+
+  def are_all_details_finish?
+    (order_details.finish.count == order_details.count) ? true : false
+  end
 end
