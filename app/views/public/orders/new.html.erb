@@ -1,5 +1,6 @@
 <div class = "container">
   <%= form_with model: @order, url: orders_confirm_path do |f| %>
+  <%= render 'layouts/errors', resource: @order %>
   <h4>支払い方法</h4>
   <!--モデルに記述したenumを用いて支払い方法を表示。keyをenumの設定した数字にする-->
   <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
@@ -8,8 +9,6 @@
   <%= f.label :payment_method, Order.payment_methods_i18n[:bank_transfer] %>
 
   <h3>お届け先</h3>
-
-
 
   <p><%= f.radio_button :select_address, 0 %>ご自身の住所</p>
   <p>〒<%= current_customer.postal_code %> <%= current_customer.address %></p>

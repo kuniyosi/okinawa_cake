@@ -2,7 +2,7 @@ class Public::DeliveriesController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @delivery_new = Delivery.new
+    @delivery = Delivery.new
     @customer = current_customer
     @deliveries = @customer.deliveries
   end
@@ -14,6 +14,8 @@ class Public::DeliveriesController < ApplicationController
       redirect_to deliveries_path
     else
       @deliveries = Delivery.all
+      @customer = current_customer
+      @delivery_new = Delivery.new
       render :index
     end
   end

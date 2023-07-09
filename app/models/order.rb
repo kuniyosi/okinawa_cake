@@ -4,6 +4,10 @@ class Order < ApplicationRecord
 
   belongs_to :customer
 
+  validates :ship_name, presence: true
+  validates :ship_to_address, presence: true
+  validates :postcode, presence: true
+
   # 注文ステータス
   enum status: {
     wait_payment: 0, confirm_payment: 1, in_production: 2, preparing_to_ship: 3, already_shipped: 4

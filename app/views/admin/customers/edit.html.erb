@@ -3,6 +3,7 @@
 <h2>会員編集</h2>
 
 <%= form_with model: @customer, url: admin_customer_path(@customer) do |f| %>
+  <%= render 'layouts/errors', resource: @customer %>
 
   <p>会員ID：<%= @customer.id %></p>
 

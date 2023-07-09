@@ -31,7 +31,7 @@ class Admin::ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to admin_item_path(@item)
     else
-      render edit_admin_item_path(@item)
+      render :edit
     end
   end
 

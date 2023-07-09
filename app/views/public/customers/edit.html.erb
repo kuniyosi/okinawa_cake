@@ -3,6 +3,7 @@
 <h2>会員編集</h2>
 
 <%= form_with model: @customer, url: customers_update_path do |f| %>
+  <%= render 'layouts/errors', resource: @customer %>
 
   <div class="field">
     <%= f.label :last_name, "(名前)", class: "customer_name" %> <%= f.text_field :last_name, autofocus: true, :placeholder => "難波" %>
