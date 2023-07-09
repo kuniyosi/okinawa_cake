@@ -7,6 +7,13 @@ class Item < ApplicationRecord
 
   belongs_to :genre
 
+  # バリデーション。item登録時の必須入力の設定。
+  validates :name, presence: true
+  validates :description, presence: true
+  validates :price, presence: true
+  validates :item_image, presence: true
+
+
   # priceに消費税を計算して表示させるためのメソッド
   def add_tax_price
     (self.price * 1.10).ceil

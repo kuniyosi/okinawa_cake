@@ -3,6 +3,7 @@
 <h3>商品新規登録</h3>
 
 <%= form_with model: @item, url: admin_items_path do |f| %>
+  <%= render 'layouts/errors', resource: @item %>
   <div class = "form-group">
     <label for = "item_description">商品画像</label>
     <%= f.file_field :item_image, accept: "image/*" %>

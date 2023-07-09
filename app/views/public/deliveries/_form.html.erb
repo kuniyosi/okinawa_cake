@@ -1,4 +1,5 @@
 <%= form_with model: delivery, url: url do |f| %>
+<%= render 'layouts/errors', resource: delivery %>
   <div class = "form-group col-auto">
     <label for = "delivery_postcode" class="col-sm-2 col-form-label">郵便番号</label>
     <!--text_numberはデータ型がintegerでないとうまく保存できない。-->
