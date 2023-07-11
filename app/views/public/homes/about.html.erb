@@ -1,2 +1,20 @@
-<h1>Public::Homes#about</h1>
-<p>Find me in app/views/public/homes/about.html.erb</p>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-10 mx-auto text-center">
+      <h1>About</h1>
+      <p>
+        ながのCAKEは全国発送可能なケ ーキ屋さんです。<br>
+        お子様からお年寄りの方までお召し上がりいただけるよう、<br>
+        様々なバリエ ーションをご用意しております。<br>
+        また、全国へ発送可能ですので「いつ」でも「どこ」でもご注文いただけます。<br>
+        ぜひご注文ください。
+      </p>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col-md-8 col-10 mx-auto">
+      <!--表示する画像にcolを設定することで画像の表示サイズをcol内で収めることができる-->
+      <%= image_tag asset_path("about.png", alt: "アバウト画像"), class: "mx-auto col-12" %>
+    </div>
+  </div>
+</div>
