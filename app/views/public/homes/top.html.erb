@@ -1,2 +1,31 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-6 col-12 mx-auto">
+      <div class="card bg-dark text-dark text-center">
+        <%= image_tag asset_path("about.png", alt: "アバウト画像"), class: "card-img" %>
+        <div class="card-img-overlay ">
+          <h5 class="card-title">ようこそ、沖縄ケーキへ!</h5>
+          <p class="card-text">
+            このサイトは、ケーキ販売のECサイトになります。<br>
+            会員でない方も商品の閲覧はできますが、<br>
+            購入には会員登録が必要になります。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class = "row">
+    <h2>新着商品</h2>
+		<div class="items d-flex">
+			<% @items.each do |item| %>
+			  <div class = "item col-md-2 mx-2">
+				<%= link_to item_path(item) do %>
+					<%= image_tag item.item_image, class: "col-12" %>
+					<p><%= item.name %></p>
+					<p><%= item.add_tax_price %>円</p>
+				<% end %>
+				</div>
+			<% end %>
+		</div>
+  </div>
+</div>
