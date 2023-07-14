@@ -1,23 +1,49 @@
 <div class = "container">
-
-<h3>マイページ</h3>
-
-<%= link_to '編集する', edit_information_path %>
-
-<p>氏名：<%= @customer.last_name %> <%= @customer.first_name %></p>
-
-<p>フリガナ：<%= @customer.last_name_kana %> <%= @customer.first_name_kana %></p>
-
-<p>郵便番号：<%= @customer.postal_code %></p>
-
-<p>住所：<%= @customer.address %></p>
-
-<p>電話番号：<%= @customer.phone_number %></p>
-
-<p>メールアドレス：<%= @customer.email %></p>
-
-<%= link_to '配送先一覧', deliveries_path %>
-
-<%= link_to '注文履歴一覧', orders_path %>
-
+  <div class = "row">
+    <h3 class = "text-center">マイページ</h3>
+    <!--table-responsiveで横スクロールにも対応できる表ができる。sm追加で575.98px以下で横スクロールに切り替え-->
+    <div class = "col-md-6 col-12 mx-auto">
+      <p>
+        登録情報　　<%= link_to '編集する', edit_information_path, class: "btn btn-success" %>
+      </p>
+      <div class = "table-responsive-sm">
+      <!--text-nowrapで折り返し表示を禁止。table-responsiveと合わせて使うことで小さい端末でもみやすいテーブルが作れる-->
+      <!--table-borderedで枠線を作る-->
+      <table class = "table text-nowrap table-bordered">
+        <tbody>
+          <tr>
+            <th class = "table-dark">氏名</th>
+            <td><%= @customer.full_name %></td>
+          </tr>
+          <tr>
+            <th class = "table-dark">フリガナ</th>
+            <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
+          </tr>
+          <tr>
+            <th class = "table-dark">郵便番号</th>
+            <td><%= @customer.postal_code %></td>
+          </tr>
+          <tr>
+            <th class = "table-dark">住所</th>
+            <td><%= @customer.address %></td>
+          </tr>
+          <tr>
+            <th class = "table-dark">電話番号</th>
+            <td><%= @customer.phone_number %></td>
+          </tr>
+          <tr>
+            <th class = "table-dark">メールアドレス</th>
+            <td><%= @customer.email %></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <p>
+        配送先　　<%= link_to '一覧を見る', deliveries_path, class: "btn btn-primary" %>
+      </p>
+      <p>
+        注文履歴　<%= link_to '一覧を見る', orders_path, class: "btn btn-primary" %>
+      </p>
+    </div>
+  </div>
 </div>
