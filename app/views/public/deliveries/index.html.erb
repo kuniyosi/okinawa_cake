@@ -1,9 +1,9 @@
 <div class = "container">
 
-  <h1>配送先一覧/登録</h1>
-
-  <%= render 'form',delivery: @delivery, url: deliveries_path ,submit: '新規登録' %>
-
+  <h3>配送先一覧/登録</h3>
+  <div class = "row">
+    <%= render 'form',delivery: @delivery, url: deliveries_path ,submit: '新規登録' %>
+  </div>
 <% @deliveries.each do |delivery| %>
   <div>
     <%= delivery.postcode %>
