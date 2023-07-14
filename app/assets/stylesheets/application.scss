@@ -14,6 +14,7 @@
  *= require_self
  */
 
+//ページネーションの表示を右寄せで共通させる 
 .pagination {
-  justify-content: center;
+  justify-content: right;
 }

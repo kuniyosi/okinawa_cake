@@ -1,0 +1,16 @@
+<!--↓itemを4つずつで表示するための記述-->
+<div class="row row-cols-1 row-cols-md-4 g-4">
+  <% items.each do |item| %>
+    <div class="col">
+      <div class="card">
+      <%= link_to item_path(item) do %>
+        <%= image_tag item.item_image, class: "card-img-top img-fluid" %>
+        <div class="card-body">
+          <p><%= item.name %></p>
+          <p><%= item.add_tax_price.to_s(:delimited) %>円</p>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
