@@ -1,43 +1,63 @@
 <div class = "container">
-  <%= form_with model: @order, url: orders_confirm_path do |f| %>
-  <%= render 'layouts/errors', resource: @order %>
-  <h4>支払い方法</h4>
-  <!--モデルに記述したenumを用いて支払い方法を表示。keyをenumの設定した数字にする-->
-  <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
-  <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
-  <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
-  <%= f.label :payment_method, Order.payment_methods_i18n[:bank_transfer] %>
+  <div class = "row">
+    <div class = "col-md-8 mx-auto">
+    <%= form_with model: @order, url: orders_confirm_path do |f| %>
+    <%= render 'layouts/errors', resource: @order %>
+    <h4>支払い方法</h4>
+    <!--モデルに記述したenumを用いて支払い方法を表示。keyをenumの設定した数字にする-->
+    <ul>
+      <li>
+        <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+        <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
+      </li>
+      <li>
+        <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+        <%= f.label :payment_method, Order.payment_methods_i18n[:bank_transfer] %>
+      </li>
+    </ul>
 
   <h3>お届け先</h3>
-
-  <p><%= f.radio_button :select_address, 0 %>ご自身の住所</p>
-  <p>〒<%= current_customer.postal_code %> <%= current_customer.address %></p>
-  <!--full_nameメソッドをモデルに定義して呼び出し-->
-	<p><%= current_customer.full_name %></p>
-
-  <!--options_from_collection_for_selectメソッドを使ってaddressからデータを持ってくる-->
-  <p> <%= f.radio_button :select_address, 1 %>登録済み住所</p>
-  <p><%= f.select :address_id , options_from_collection_for_select(current_customer.deliveries, :id, :full_address) %></p>
-
-  <p> <%= f.radio_button :select_address, 2 %>新しいお届け先</p>
-
-  <table>
-    <tr>
-      <td>郵便番号</td>
-      <td> <%= f.text_field :postcode %></td>
-    </tr>
-    <tr>
-      <td>住所</td>
-      <td><%= f.text_field :ship_to_address %></td>
-    </tr>
-    <tr>
-      <td>宛名</td>
-      <td><%= f.text_field :ship_name %></td>
-    </tr>
-  </table>
-
-  <%= f.submit "確認画面へ進む" %>
-
-<% end %>
+  <ul>
+    <li>
+      <!--:checked => trueでデフォルトでチェックをつけることができる-->
+      <p><%= f.radio_button :select_address, 0, :checked => true %> ご自身の住所</p>
+      <p class = "ps-3">
+        〒<%= current_customer.postal_code %> <%= current_customer.address %><br>
+        <!--full_nameメソッドをモデルに定義して呼び出し-->
+        <%= current_customer.full_name %>
+      </p>
+    </li>
+    <li>
+      <!--options_from_collection_for_selectメソッドを使ってaddressからデータを持ってくる-->
+      <p><%= f.radio_button :select_address, 1 %> 登録済み住所から選択</p>
+      <!--f.selectにcssを設定する場合、第４引数に設定する必要があるため、第３引数を設定してから設定する。今回は第３引数は空の状態。-->
+      <div class = "ps-3">
+      <%= f.select :address_id , options_from_collection_for_select(current_customer.deliveries, :id, :full_address), {}, {class: "form-select mb-3"} %>
+      </div>
+    </li>
+    <li>
+      <p><%= f.radio_button :select_address, 2 %> 新しいお届け先</p>
+      <table>
+      <tr>
+        <th>郵便番号</th>
+        <td class = "ps-3"> <%= f.text_field :postcode %></td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td class = "ps-3"><%= f.text_field :ship_to_address %></td>
+      </tr>
+      <tr>
+        <th>宛名</th>
+        <td class = "ps-3"><%= f.text_field :ship_name %></td>
+      </tr>
+      </table>
+    </li>
+  </ul>
+  <div class = "text-center">
+  <%= f.submit "確認画面へ進む", class: "btn btn-primary col-sm-4" %>
+  </div>
+  <% end %>
+    </div>
+  </div>
 </div>
 
