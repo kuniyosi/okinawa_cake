@@ -1,12 +1,12 @@
 <div class = "container">
   <div class = "row">
     <h3 class = "text-center">マイページ</h3>
-    <!--table-responsiveで横スクロールにも対応できる表ができる。sm追加で575.98px以下で横スクロールに切り替え-->
     <div class = "col-md-6 col-12 mx-auto">
       <p>
         登録情報　　<%= link_to '編集する', edit_information_path, class: "btn btn-success" %>
       </p>
       <div class = "table-responsive-sm">
+      <!--table-responsiveで横スクロールにも対応できる表ができる。sm追加で575.98px以下で横スクロールに切り替え-->
       <!--text-nowrapで折り返し表示を禁止。table-responsiveと合わせて使うことで小さい端末でもみやすいテーブルが作れる-->
       <!--table-borderedで枠線を作る-->
       <table class = "table text-nowrap table-bordered">
