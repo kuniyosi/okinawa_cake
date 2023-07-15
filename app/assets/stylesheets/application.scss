@@ -14,7 +14,15 @@
  *= require_self
  */
 
-//ページネーションの表示を右寄せで共通させる 
+//ページネーションの表示を右寄せで共通させる
 .pagination {
   justify-content: right;
 }
+
+li{
+  list-style:none;
+}
+
+.select{
+              width: 100px;
+            }
