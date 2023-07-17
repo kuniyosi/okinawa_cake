@@ -1,30 +1,77 @@
 <div class = "container">
-  <div>
-    <h6>注文情報</h6>
-    <p><%= @order.created_at.strftime('%Y/%m/%d') %></p>
-    <p>
-      〒<%= @order.postcode %><br>
-      <%= @order.ship_to_address %><br>
-      <%= @order.ship_name %>
-    </p>
-    <p><%= @order.payment_method_i18n %></p>
-    <p><%= @order.status_i18n %></p>
-
-
-    <h6>請求情報</h6>
-    <% @sum = (@order.total_price-@order.freight) %>
-    <p><%= @sum.to_s(:delimited) %>円</p>
-    <p><%= @order.freight %>円</p>
-    <p><%= @order.total_price.to_s(:delimited) %>円</p>
-
+  <div class = "row">
+    <div class = "col-md-8">
+      <div class = "table-responsive-md">
+      <h6>注文情報</h6>
+      <table class = "table text-nowrap table-bordered">
+        <tr>
+          <th class = "table-dark">注文日</th>
+          <td><%= @order.created_at.strftime('%Y/%m/%d') %></tb>
+        </tr>
+        <tr>
+          <th class = "table-dark">配送先</th>
+          <td>
+            〒<%= @order.postcode %><br>
+            <%= @order.ship_to_address %><br>
+            <%= @order.ship_name %>
+          </tr>
+        </tr>
+        <tr>
+          <th class = "table-dark">支払い方法</th>
+          <td><%= @order.payment_method_i18n %></td>
+        </tr>
+        <tr>
+          <th class = "table-dark">ステータス</th>
+          <td><%= @order.status_i18n %></td>
+        </tr>
+      </table>
+      </div>
+    </div>
+    <div class = "col-md-4">
+      <h6>請求情報</h6>
+      <table class = "table text-nowrap table-bordered">
+        <% @sum = (@order.total_price-@order.freight) %>
+        <tr>
+          <th class = "table-dark">商品合計</th>
+          <td><%= @sum.to_s(:delimited) %>円</td>
+        </tr>
+        <tr>
+          <th class = "table-dark">配送料</th>
+          <td><%= @order.freight %>円</td>
+        </tr>
+        <tr>
+          <th class = "table-dark">ご請求額</th>
+          <td><%= @order.total_price.to_s(:delimited) %>円</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col-md-6">
     <h6>注文内容</h6>
+    <div class = "table-responsive-md">
+    <table class = "table text-nowrap table-bordered">
+      <thead class = "table-dark">
+        <tr>
+          <th>商品</th>
+          <th>単価（税込）</th>
+          <th>個数</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <tbody>
       <% @order_details.each do |order_detail| %>
-        <p><%= order_detail.item.name %></p>
-        <p><%= order_detail.item.add_tax_price %></p>
-        <p><%= order_detail.quantity %></p>
-        <% @subtotal = (order_detail.item.add_tax_price*order_detail.quantity).to_i %>
-        <p><%= @subtotal.to_s(:delimited) %>円</p>
+        <tr>
+          <td><%= order_detail.item.name %></td>
+          <td><%= order_detail.item.add_tax_price %></td>
+          <td><%= order_detail.quantity %></td>
+          <% @subtotal = (order_detail.item.add_tax_price*order_detail.quantity).to_i %>
+          <td><%= @subtotal.to_s(:delimited) %>円</td>
+        </tr>
       <% end %>
-    </p>
+      </tbody>
+    </table>
+    </div>
+    </div>
   </div>
 </div>
