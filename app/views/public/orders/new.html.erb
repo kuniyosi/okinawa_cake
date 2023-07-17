@@ -37,18 +37,18 @@
     </li>
     <li>
       <p><%= f.radio_button :select_address, 2 %> 新しいお届け先</p>
-      <table>
+      <table class = "text-nowrap col-12">
       <tr>
-        <th>郵便番号</th>
-        <td class = "ps-3"> <%= f.text_field :postcode %></td>
+        <th class = "ps-3">郵便番号</th>
+        <td> <%= f.text_field :postcode, class: "form-control" %></td>
       </tr>
       <tr>
-        <th>住所</th>
-        <td class = "ps-3"><%= f.text_field :ship_to_address %></td>
+        <th class = "ps-3">住所</th>
+        <td><%= f.text_field :ship_to_address, class: "form-control" %></td>
       </tr>
       <tr>
-        <th>宛名</th>
-        <td class = "ps-3"><%= f.text_field :ship_name %></td>
+        <th class = "ps-3">宛名</th>
+        <td><%= f.text_field :ship_name, class: "form-control" %></td>
       </tr>
       </table>
     </li>
