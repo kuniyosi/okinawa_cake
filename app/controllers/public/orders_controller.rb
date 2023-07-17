@@ -21,7 +21,6 @@ class Public::OrdersController < ApplicationController
       @order.customer_id = current_customer.id
     end
     @cart_items = current_customer.cart_items
-    @order_new = Order.new
     render :confirm
   end
 
@@ -55,8 +54,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
-    @order_details = @order.order_details
+    @order = current_customer.orders.find(params[:id])
+    @order_details = @order.order_details.includes(:item)
   end
 
   private

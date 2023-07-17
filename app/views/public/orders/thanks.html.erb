@@ -1,1 +1,11 @@
-<h2>ご注文有難うございました。</h2>
+<div class = "container">
+  <div class = "row my-5 text-center text-nowrap">
+    <h3>ご注文有難うございました。</h3>
+  </div>
+  <div class = "row g-3">
+      <%= link_to "お買い物を続ける", items_path, class: "btn btn-primary col-md-5 mx-auto" %>
+  </div>
+  <div class = "row my-3 g-3">
+      <%= link_to "マイページ", mypage_path, class: "btn btn-success col-md-5 mx-auto" %>
+  </div>
+</div>
