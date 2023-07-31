@@ -1,22 +1,25 @@
 <div class = "container">
+  <div class = "row">
+  <h1>商品詳細</h1>
 
-<h1>商品詳細</h1>
+    <div class = "col-md-3 col-12 ms-md-auto text-center">
+      <%= image_tag @item.item_image, size: "200x200" %>
+    </div>
+    <div class = "offset-md-1 col-md-4 col-12 me-auto">
+      <p>商品名：<%= @item.name %></p>
 
-<%= image_tag @item.item_image, size: "200x200" %>
+      <p>商品説明：<%= @item.description %></p>
 
-<p>商品名：<%= @item.name %></p>
+      <p>ジャンル：<%= @item.genre.name %></p>
 
-<p>商品説明：<%= @item.description %></p>
+      <!--税込価格はモデルにadd_tax_priceメソッドを作成して活用。to_s(:delimited)は3桁ごとに,を入れてくれる-->
+      <p>税込価格（税抜価格）：<%= @item.add_tax_price.to_s(:delimited) %>（<%= @item.price.to_s(:delimited) %>）円</p>
 
-<p>ジャンル：<%= @item.genre.name %></p>
+      <p>販売ステータス：<%= @item.sale_status ? '販売中' : '販売停止中' %></p>
 
-<!--税込価格はモデルにadd_tax_priceメソッドを作成して活用。to_s(:delimited)は3桁ごとに,を入れてくれる-->
-<p>税込価格（税抜価格）：<%= @item.add_tax_price.to_s(:delimited) %>（<%= @item.price.to_s(:delimited) %>）円</p>
+      <%= link_to '編集する', edit_admin_item_path(@item) %>
 
-<p>販売ステータス：<%= @item.sale_status ? '販売中' : '販売停止中' %></p>
-
-<%= link_to '編集する', edit_admin_item_path(@item) %>
-
-<%= link_to '削除する', admin_item_path(@item), method: :delete %>
-
+      <%= link_to '削除する', admin_item_path(@item), method: :delete %>
+    </div>
+  </div>
 </div>
