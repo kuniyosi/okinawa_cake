@@ -6,44 +6,52 @@
   <%= render 'layouts/errors', resource: @customer %>
 
   <p>会員ID：<%= @customer.id %></p>
+  <div class = "row">
 
-  <div class="field">
-    <%= f.label :last_name, "(名前)", class: "customer_name" %> <%= f.text_field :last_name, autofocus: true, :placeholder => "難波" %>
-    <%= f.label :first_name, "(姓)", class: "customer_name" %> <%= f.text_field :first_name, :placeholder =>"太郎" %>
+    <div class="col-md-6">
+      <%= f.label :last_name, "姓", class: "customer_name " %>
+      <%= f.text_field :last_name, autofocus: true, :placeholder => "難波", class: "form-control mt-2" %>
+    </div>
+    <div class="col-md-6">
+      <%= f.label :first_name, "名", class: "customer_name" %>
+      <%= f.text_field :first_name, :placeholder => "太郎", class: "form-control mt-2" %>
+    </div>
+    <div class="col-md-6">
+      <%= f.label :last_name_kana, "セイ", class: "customer_name" %>
+      <%= f.text_field :last_name_kana, :placeholder => "ナンバ", class: "form-control mt-2" %>
+    </div>
+    <div class="col-md-6">
+      <%= f.label :first_name_kana, "メイ", class: "customer_name" %>
+      <%= f.text_field :first_name_kana, :placeholder => "タロウ", class: "form-control mt-2" %>
+    </div>
+    <div class="col-12">
+      <%= f.label :postal_code, "郵便番号" %>
+      <%= f.text_field :postal_code, class: "form-control mt-2" %>
+    </div>
+    <div class="col-12">
+      <%= f.label :address, "住所" %>
+      <%= f.text_field :address, class: "form-control mt-2" %>
+    </div>
+    <div class="col-12">
+      <%= f.label :phone_number, "電話番号" %>
+      <%= f.text_field :phone_number, class: "form-control mt-2" %>
+    </div>
+    <div class="col-12">
+      <%= f.label :email, "メールアドレス" %>
+      <!--autocompleteは入力フォームで自動補完を行ってくれるもの。何と結びつけるかも指定できる。今回ならemail-->
+      <%= f.email_field :email, autocomplete: "email", class: "form-control mt-2" %>
+    </div>
+    <div class = "form-group my-2">
+      <label for = "customer_status">会員ステータス</label>
+      <div><%= f.radio_button :status, true %>有効</div>
+      <div><%= f.radio_button :status, false %>無効</div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "変更を保存" %>
+    </div>
+  <% end %>
+
   </div>
-
-  <div class="field">
-    <%= f.label :last_name_kana, "(セイ)", class: "customer_name" %> <%= f.text_field :last_name_kana, :placeholder => "ナンバ" %>
-    <%= f.label :first_name_kana, "(メイ)", class: "customer_name" %> <%= f.text_field :first_name_kana, :placeholder =>"タロウ" %>
-  </div>
-
-
-  <div class="field">
-    <%= f.label :postal_code, "郵便番号（ハイフンなし）" %> <%= f.text_field :postal_code %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address, "住所" %> <%= f.text_field :address %>
-  </div>
-
-  <div class="field">
-    <%= f.label :phone_number, "電話番号" %> <%= f.text_field :phone_number %>
-  </div>
-
-  <div class="field">
-    <!--autocompleteは入力フォームで自動補完を行ってくれるもの。何と結びつけるかも指定できる。今回ならemail-->
-    <%= f.label :email, "メールアドレス" %> <%= f.email_field :email, autocomplete: "email" %>
-  </div>
-
-  <div class = "form-group">
-    <label for = "customer_status">会員ステータス</label>
-    <div><%= f.radio_button :status, true %>有効</div>
-    <div><%= f.radio_button :status, false %>無効</div>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "変更を保存" %>
-  </div>
-<% end %>
 
 </div>
